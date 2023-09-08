@@ -1,134 +1,134 @@
 package com.wanderer.model;
 
-import com.wanderer.mapFunc.MapGenerator;
+import com.wanderer.service.implementation.MapGeneratorImp;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public abstract class Character {
-    public int LVL = 1;
-    int MaxHP;
-    int HP = 1;
-    int DP;
-    int SP;
-    public boolean isAlive = true;
-    public int charID;
-    protected static int numOfNPCs = 4;
-    int charPositionX;
-    int charPositionY;
 
-    BufferedImage image;
+  public int LVL = 1;
+  protected int MaxHP;
+  protected int HP = 1;
+  protected int DP;
+  protected int SP;
+  public boolean isAlive = true;
+  protected int charID;
+  protected static int numOfNPCs = 4;
+  private int charPositionX;
+  private int charPositionY;
 
-    int i = new Random().nextInt(10 - 1) + 1;
-    int j = new Random().nextInt(10 - 1) + 1;
+  protected BufferedImage image;
 
-    public void NPCPositioning(MapGenerator map) {
-        if (isAlive) {
-            int plusMinus = new Random().nextInt(10 - 1) + 1;
-            if (plusMinus < 3 && j < 9 && map.mapArr[j + 1][i] == 0) {
-                map.mapArr[j][i] = 0;
-                j++;
-            } else if (plusMinus >= 3 && plusMinus < 5 && j > 0 && map.mapArr[j - 1][i] == 0) {
-                map.mapArr[j][i] = 0;
-                j--;
-            } else if (plusMinus >= 5 && plusMinus < 7 && i < 9 && map.mapArr[j][i + 1] == 0) {
-                map.mapArr[j][i] = 0;
-                i++;
-            } else if (plusMinus >= 7 && i > 0 && map.mapArr[j][i - 1] == 0) {
-                map.mapArr[j][i] = 0;
-                i--;
-            }
-        }
-        if (map.mapArr[j][i] == 0) {
-            charPositionX = j * 72;
-            charPositionY = i * 72;
-            map.mapArr[j][i] = charID;
-        }
+  int i = new Random().nextInt(10 - 1) + 1;
+  int j = new Random().nextInt(10 - 1) + 1;
+
+  public void NPCPositioning(MapGeneratorImp map) {
+    if (isAlive) {
+      int plusMinus = new Random().nextInt(10 - 1) + 1;
+      if (plusMinus < 3 && j < 9 && map.mapArr[j + 1][i] == 0) {
+        map.mapArr[j][i] = 0;
+        j++;
+      } else if (plusMinus >= 3 && plusMinus < 5 && j > 0 && map.mapArr[j - 1][i] == 0) {
+        map.mapArr[j][i] = 0;
+        j--;
+      } else if (plusMinus >= 5 && plusMinus < 7 && i < 9 && map.mapArr[j][i + 1] == 0) {
+        map.mapArr[j][i] = 0;
+        i++;
+      } else if (plusMinus >= 7 && i > 0 && map.mapArr[j][i - 1] == 0) {
+        map.mapArr[j][i] = 0;
+        i--;
+      }
     }
-
-    public void spawnNPC(MapGenerator map) {
-        i = new Random().nextInt(10 - 1) + 1;
-        j = new Random().nextInt(10 - 1) + 1;
-        if (map.mapArr[j][i] == 0) {
-            charPositionX = j * 72;
-            charPositionY = i * 72;
-            map.mapArr[j][i] = charID;
-        } else {
-            spawnNPC(map);
-        }
+    if (map.mapArr[j][i] == 0) {
+      charPositionX = j * 72;
+      charPositionY = i * 72;
+      map.mapArr[j][i] = charID;
     }
+  }
 
-    public void battle(Character hero) {
-
+  public void spawnNPC(MapGeneratorImp map) {
+    i = new Random().nextInt(10 - 1) + 1;
+    j = new Random().nextInt(10 - 1) + 1;
+    if (map.mapArr[j][i] == 0) {
+      charPositionX = j * 72;
+      charPositionY = i * 72;
+      map.mapArr[j][i] = charID;
+    } else {
+      spawnNPC(map);
     }
+  }
 
-    public void die(MapGenerator map) {
-        isAlive = false;
-        map.mapArr[charPositionX / 72][charPositionY / 72] = 0;
+  public void battle(Character hero) {
+
+  }
+
+  public void die(MapGeneratorImp map) {
+    isAlive = false;
+    map.mapArr[charPositionX / 72][charPositionY / 72] = 0;
+  }
+
+  public void NPCStrike(Character hero) {
+    int SV = this.SP + (2 * (int) (6.0 * Math.random() + 1));
+    if (SV > hero.DP) {
+      hero.HP -= SV;
     }
+  }
 
-    public void strike(Character hero) {
-        int SV = this.SP + (2 * (int) (6.0 * Math.random() + 1));
-        if (SV > hero.DP) {
-            hero.HP -= SV;
-        }
-    }
+  public void NPCLvlUp() {
 
-    public void NPCLvlUp(){
+  }
 
-    }
+  public int getLVL() {
+    return LVL;
+  }
 
+  public int getMaxHP() {
+    return MaxHP;
+  }
 
-    public int getLVL() {
-        return LVL;
-    }
+  public int getHP() {
+    return HP;
+  }
 
-    public int getMaxHP() {
-        return MaxHP;
-    }
+  public int getDP() {
+    return DP;
+  }
 
-    public int getHP() {
-        return HP;
-    }
+  public int getSP() {
+    return SP;
+  }
 
-    public int getDP() {
-        return DP;
-    }
+  public boolean isAlive() {
+    return isAlive;
+  }
 
-    public int getSP() {
-        return SP;
-    }
+  public int getCharPositionX() {
+    return charPositionX;
+  }
 
-    public boolean isAlive() {
-        return isAlive;
-    }
+  public int getCharPositionY() {
+    return charPositionY;
+  }
 
-    public int getCharPositionX() {
-        return charPositionX;
-    }
+  public BufferedImage getImage() {
+    return image;
+  }
 
-    public int getCharPositionY() {
-        return charPositionY;
-    }
-
-    public BufferedImage getImage() {
-        return image;
-    }
-
-    @Override
-    public String toString() {
-        return "Character{" +
-                "LVL=" + LVL +
-                ", MaxHP=" + MaxHP +
-                ", HP=" + HP +
-                ", DP=" + DP +
-                ", SP=" + SP +
-                ", isAlive=" + isAlive +
-                ", charID=" + charID +
-                ", charPositionX=" + charPositionX +
-                ", charPositionY=" + charPositionY +
-                ", i=" + i +
-                ", j=" + j +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Character{" +
+        "LVL=" + LVL +
+        ", MaxHP=" + MaxHP +
+        ", HP=" + HP +
+        ", DP=" + DP +
+        ", SP=" + SP +
+        ", isAlive=" + isAlive +
+        ", charID=" + charID +
+        ", charPositionX=" + charPositionX +
+        ", charPositionY=" + charPositionY +
+        ", i=" + i +
+        ", j=" + j +
+        '}';
+  }
 }
