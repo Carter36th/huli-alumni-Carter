@@ -28,9 +28,8 @@ public class MapGeneratorImp implements MapGenerator {
 
   @Override
   public void fillMap() {
-    System.out.println(pathVariable);
     Path path = Paths.get(
-        pathVariable + "\\maps\\map"
+        "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\maps\\map"
             + mapLvl + ".txt");
     List<String> mapList;
     try {
@@ -57,11 +56,11 @@ public class MapGeneratorImp implements MapGenerator {
         PositionedImage image;
         if (mapArr[countI][countJ] == 1) {
           image = new PositionedImage(
-              pathVariable + "\\png\\wall.png",
+              "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\wall.png",
               i, j);
         } else {
           image = new PositionedImage(
-              pathVariable + "\\png\\floor.png",
+              "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\floor.png",
               i, j);
         }
         image.draw(graphics);

@@ -25,6 +25,6 @@ public class WandererApplication {
     } else {
       throw new Exception("Headless environment required.");
     }
-    board.startGame();
+//    board.startGame();
   }
 }

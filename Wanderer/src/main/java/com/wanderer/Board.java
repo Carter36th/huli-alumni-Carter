@@ -12,7 +12,9 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Board extends JComponent implements KeyListener {
 
   private static BufferedImage currentSide;
