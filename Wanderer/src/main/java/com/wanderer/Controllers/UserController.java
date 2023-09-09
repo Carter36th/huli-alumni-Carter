@@ -27,7 +27,7 @@ public class UserController {
 
   @PostMapping("/login")
   public String login(@RequestParam String nickname, @RequestParam String password) {
-    Optional<User> user = userService.userExist(nickname, password);
+    Optional<User> user = userService.findUser(nickname, password);
     if (user.isPresent()) {
       Long userId = user.get().getId();
       return "redirect:/wanderer/"+userId;

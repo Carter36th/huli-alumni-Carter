@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.swing.*;
 import java.awt.*;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 public class WandererApplication {
