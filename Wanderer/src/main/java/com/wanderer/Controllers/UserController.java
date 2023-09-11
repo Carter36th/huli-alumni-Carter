@@ -1,7 +1,7 @@
 package com.wanderer.Controllers;
 
 import com.wanderer.model.User;
-import com.wanderer.security.jwt.JwtUtils;
+import com.wanderer.security.LoginUtils;
 import com.wanderer.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
   private final UserService userService;
-  private final JwtUtils jwtUtils;
+  private final LoginUtils loginUtils;
 
   @Autowired
-  public UserController(UserService userService, JwtUtils jwtUtils) {
+  public UserController(UserService userService, LoginUtils loginUtils) {
     this.userService = userService;
-    this.jwtUtils = jwtUtils;
+    this.loginUtils = loginUtils;
   }
 
   @GetMapping("/login")
@@ -35,7 +35,7 @@ public class UserController {
       HttpServletResponse response) {
     Optional<User> user = userService.findUser(username, password);
     if (user.isPresent()) {
-      String token = jwtUtils.authenticate(user.get());
+      String token = loginUtils.authenticate(user.get());
 
       Cookie cookie = new Cookie("JWT_TOKEN", token);
       cookie.setPath("/");
