@@ -16,16 +16,16 @@ public class User {
   private Long id;
   private String firstName;
   private String lastName;
-  private String nickname;
+  private String username;
   private String password;
   private Date birthDate;
 
-  public User(Long id, String firstName, String lastName, String nickname, String password,
+  public User(Long id, String firstName, String lastName, String username, String password,
       Date birthDate) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.nickname = nickname;
+    this.username = username;
     this.password = password;
     this.birthDate = birthDate;
   }
@@ -37,8 +37,8 @@ public class User {
     return id;
   }
 
-  public String getNickname() {
-    return nickname;
+  public String getUsername() {
+    return username;
   }
 
   public String getPassword() {

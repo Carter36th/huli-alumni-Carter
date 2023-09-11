@@ -2,8 +2,12 @@ package com.wanderer.model;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import org.springframework.beans.factory.annotation.Value;
 
 public class Boss extends Character {
+
+  @Value("${RESOURCES_PATH}")
+  private String pathVariable;
 
   public Boss() {
     this.HP = 2 * this.LVL * (int) (6.0 * Math.random() + 1) + (int) (6.0 * Math.random() + 1);
@@ -15,7 +19,7 @@ public class Boss extends Character {
 
     try {
       image = ImageIO.read(new File(
-          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources\\png\\boss.png"));
+          pathVariable + "\\png\\boss.png"));
     } catch (Exception e) {
       System.out.println("Cannot find bossImg");
     }

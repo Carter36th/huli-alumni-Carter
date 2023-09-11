@@ -1,6 +1,6 @@
 package com.wanderer.service.implementation;
 
-import com.wanderer.mapFunc.PositionedImage;
+import com.wanderer.PositionedImage;
 import com.wanderer.service.MapGenerator;
 import java.awt.*;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class MapGeneratorImp implements MapGenerator {
   @Override
   public void fillMap() {
     Path path = Paths.get(
-        "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\maps\\map"
+        pathVariable + "\\maps\\map"
             + mapLvl + ".txt");
     List<String> mapList;
     try {
@@ -56,11 +56,11 @@ public class MapGeneratorImp implements MapGenerator {
         PositionedImage image;
         if (mapArr[countI][countJ] == 1) {
           image = new PositionedImage(
-              "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\wall.png",
+              pathVariable + "\\png\\wall.png",
               i, j);
         } else {
           image = new PositionedImage(
-              "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\floor.png",
+              pathVariable + "\\png\\floor.png",
               i, j);
         }
         image.draw(graphics);

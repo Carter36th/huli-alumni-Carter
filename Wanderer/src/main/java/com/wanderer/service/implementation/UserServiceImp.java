@@ -18,13 +18,13 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public Optional<User> findUser(String nickname, String password) {
-    return userRepository.findByNicknameAndPassword(nickname, password);
+  public Optional<User> findUser(String username, String password) {
+    return userRepository.findByUsernameAndPassword(username, password);
   }
 
   @Override
-  public Long addUser(User user) {
+  public void addUser(User user) {
     userRepository.save(user);
-    return user.getId();
   }
+
 }

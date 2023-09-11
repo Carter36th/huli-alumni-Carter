@@ -1,4 +1,4 @@
-package com.wanderer.mapFunc;
+package com.wanderer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

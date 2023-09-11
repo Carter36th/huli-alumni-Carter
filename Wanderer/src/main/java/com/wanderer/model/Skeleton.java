@@ -2,8 +2,12 @@ package com.wanderer.model;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import org.springframework.beans.factory.annotation.Value;
 
 public class Skeleton extends Character {
+
+  @Value("${RESOURCES_PATH}")
+  private String pathVariable;
 
   public Skeleton() {
     this.HP = 2 * this.LVL * (int) (6.0 * Math.random() + 1);
@@ -14,7 +18,7 @@ public class Skeleton extends Character {
 
     try {
       image = ImageIO.read(new File(
-          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources\\png\\skeleton.png"));
+          pathVariable + "\\png\\skeleton.png"));
     } catch (Exception e) {
       System.out.println("Cannot find skeletonImg");
     }
