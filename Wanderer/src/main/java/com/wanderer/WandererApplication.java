@@ -1,5 +1,7 @@
 package com.wanderer;
 
+import java.io.FileOutputStream;
+import java.util.Properties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,8 +15,8 @@ public class WandererApplication {
   public static Board board;
 
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(WandererApplication.class, args);
     System.setProperty("java.awt.headless", "false");
+    SpringApplication.run(WandererApplication.class, args);
     board = new Board();
     if (!GraphicsEnvironment.isHeadless()) {
       JFrame frame = new JFrame("RPG Game");

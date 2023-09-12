@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class MapGeneratorImp implements MapGenerator {
 
@@ -18,6 +19,7 @@ public class MapGeneratorImp implements MapGenerator {
   private int currentPositionX = 0;
   private int currentPositionY = 0;
   private int mapLvl = 1;
+
 
   @Value("${RESOURCES_PATH}")
   private String pathVariable;
