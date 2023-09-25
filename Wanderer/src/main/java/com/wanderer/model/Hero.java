@@ -32,13 +32,13 @@ public class Hero extends Character {
     this.HeroPositionY = 0;
     try {
       heroDown = ImageIO.read(new File(
-          pathVariable + "\\png\\hero-down.png"));
+          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\hero-down.png"));
       heroUp = ImageIO.read(new File(
-          pathVariable + "\\png\\hero-up.png"));
+          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\hero-up.png"));
       heroLeft = ImageIO.read(new File(
-          pathVariable + "\\png\\hero-left.png"));
+          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\hero-left.png"));
       heroRight = ImageIO.read(new File(
-          pathVariable + "\\png\\hero-right.png"));
+          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\hero-right.png"));
     } catch (Exception e) {
       System.out.println("Hero position image not found.");
     }

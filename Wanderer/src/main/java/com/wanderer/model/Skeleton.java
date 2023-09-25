@@ -18,7 +18,7 @@ public class Skeleton extends Character {
 
     try {
       image = ImageIO.read(new File(
-          pathVariable + "\\png\\skeleton.png"));
+          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\skeleton.png"));
     } catch (Exception e) {
       System.out.println("Cannot find skeletonImg");
     }

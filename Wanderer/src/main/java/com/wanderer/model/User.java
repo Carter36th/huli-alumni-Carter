@@ -1,5 +1,7 @@
 package com.wanderer.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ public class User {
   private String lastName;
   private String username;
   private String password;
+  @JsonFormat(shape = Shape.STRING, pattern = "dd-MM-yyyy")
   private Date birthDate;
 
   public User(Long id, String firstName, String lastName, String username, String password,

@@ -19,7 +19,7 @@ public class Boss extends Character {
 
     try {
       image = ImageIO.read(new File(
-          pathVariable + "\\png\\boss.png"));
+          "D:\\Coding\\GreenFox\\huli-Wanderer\\huli-alumni-Carter\\Wanderer\\src\\main\\resources" + "\\png\\boss.png"));
     } catch (Exception e) {
       System.out.println("Cannot find bossImg");
     }

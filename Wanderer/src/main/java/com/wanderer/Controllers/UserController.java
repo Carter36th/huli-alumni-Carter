@@ -33,18 +33,7 @@ public class UserController {
   @PostMapping("/login")
   public String login(@RequestParam String username, @RequestParam String password,
       HttpServletResponse response) {
-    Optional<User> user = userService.findUser(username, password);
-    if (user.isPresent()) {
-      String token = loginUtils.authenticate(user.get());
-
-      Cookie cookie = new Cookie("JWT_TOKEN", token);
-      cookie.setPath("/");
-      cookie.setMaxAge(86400000);
-      response.addCookie(cookie);
-
-      return "redirect:/wanderer";
-    }
-    return "redirect:/register";
+    return userService.login(username,password, response);
   }
 
   @GetMapping("/register")

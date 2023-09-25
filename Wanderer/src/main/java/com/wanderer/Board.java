@@ -24,12 +24,13 @@ public class Board extends JComponent implements KeyListener {
   private final static Skeleton skeleton2 = new Skeleton();
   private final static Skeleton skeleton3 = new Skeleton();
   private final MapGeneratorImp map = new MapGeneratorImp();
-  static final int TILE_SIZE = 72;
+  private static final int TILE_SIZE = 72;
   private final List<Skeleton> skeletonList = new ArrayList<>(
       List.of(skeleton1, skeleton2, skeleton3));
   private boolean inCombat = false;
 
   public Board() {
+    map.fillMap();
     currentSide = hero.getHeroDown();
     setPreferredSize(new Dimension(720, 746));
     setVisible(true);
@@ -127,29 +128,39 @@ public class Board extends JComponent implements KeyListener {
           hero.setHeroPositionX(hero.getHeroPositionX() + TILE_SIZE);
         }
       }
-
-      switch (map.mapArr[hero.getHeroPositionX() / TILE_SIZE][hero.getHeroPositionY()
-          / TILE_SIZE]) {
-        case 5 -> {
-          hero.battle(skeleton1);
-          inCombat = true;
-        }
-        case 6 -> {
-          hero.battle(skeleton2);
-          inCombat = true;
-        }
-        case 7 -> {
-          hero.battle(skeleton3);
-          inCombat = true;
-        }
-        case 4 -> {
-          hero.battle(boss);
-          inCombat = true;
-        }
-      }
+      checkForCombat();
     } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
       inCombat = !hero.HeroStrike(map);
     }
+    bossDefeat();
+    repaint();
+  }
+
+  private void checkForCombat() {
+    int tileValue = map.mapArr[hero.getHeroPositionX() / TILE_SIZE][hero.getHeroPositionY() / TILE_SIZE];
+    switch (tileValue) {
+      case 5, 6, 7 -> {
+        Skeleton skeleton = getTileSkeleton(tileValue);
+        hero.battle(skeleton);
+        inCombat = true;
+      }
+      case 4 -> {
+        hero.battle(boss);
+        inCombat = true;
+      }
+    }
+  }
+
+  private Skeleton getTileSkeleton(int tileValue) {
+    return switch (tileValue) {
+      case 5 -> skeleton1;
+      case 6 -> skeleton2;
+      case 7 -> skeleton3;
+      default -> throw new IllegalArgumentException("Invalid tile value for Skeleton: " + tileValue);
+    };
+  }
+
+  private void bossDefeat() {
     if (!boss.isAlive()) {
       map.mapLvlUp();
       map.fillMap();
@@ -166,7 +177,6 @@ public class Board extends JComponent implements KeyListener {
       hero.setHeroPositionY(0);
       hero.heroRegen();
     }
-    repaint();
   }
 
   public boolean collisionChecker(KeyEvent e) {
